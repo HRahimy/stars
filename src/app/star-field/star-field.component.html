@@ -1,0 +1,33 @@
+<svg
+  [attr.width]="boxDimensions"
+  [attr.height]="boxDimensions"
+>
+  <circle
+    [attr.cx]="radius"
+    [attr.cy]="radius"
+    [attr.r]="radius"
+    fill="transparent"
+  />
+  <line
+    *ngFor="let line of lines"
+    [attr.x1]="line.x1"
+    [attr.y1]="line.y1"
+    [attr.x2]="line.x2"
+    [attr.y2]="line.y2"
+    [attr.stroke]="line.color"
+    [attr.stroke-width]="strokeWidth"
+    [attr.stroke-linecap]="strokeLineCap"
+  >
+    <animate
+      attributeName="x1"
+      [attr.values]="xAnimateValues(line)"
+      [attr.dur]="animationDurationMs + 'ms'"
+    />
+    <animate
+      attributeName="y1"
+      [attr.values]="yAnimateValues(line)"
+      [attr.dur]="animationDurationMs + 'ms'"
+      (repeatEvent)="endAnimation()"
+    />
+  </line>
+</svg>
